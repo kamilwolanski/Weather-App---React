@@ -17,13 +17,14 @@ import LoadingComponent from "./components/LoadingComponent";
 import dayWithoutClouds from "./images/dayWithoutClouds.svg";
 
 function App() {
-  const windowHeight = window.innerHeight;
+  // const windowHeight = window.innerHeight;
   // document.body.style.height = `${windowHeight}px`;
   
 
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
     }
     console.log(windowHeight)
 
@@ -46,7 +47,8 @@ function App() {
 
   const [isCelsius, setIsCelsius] = useState(true);
   const [showPopUp, setShowPopUp] = useState(true);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
 
   console.log(windowWidth)
   function handleSubmit(e) {
