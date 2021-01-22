@@ -17,18 +17,8 @@ import LoadingComponent from "./components/LoadingComponent";
 import dayWithoutClouds from "./images/dayWithoutClouds.svg";
 
 function App() {
-  // const windowHeight = window.innerHeight;
-  
+  const formHeightRef = useRef(null);
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerHeight);
-    }
-    console.log(windowHeight)
-
-    window.addEventListener("resize", handleResize);
-  });
   const {
     city,
     currentWeather,
@@ -47,11 +37,29 @@ function App() {
   const [isCelsius, setIsCelsius] = useState(true);
   const [showPopUp, setShowPopUp] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [formHeight, setFormHeight] = useState("");
+  const [firstHeight, setFirstHeight] = useState("");
   document.body.style.height = `${windowHeight}px`;
   document.body.style.minHeight = `${windowHeight}px`;
 
-  console.log(windowWidth)
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    }
+    {
+      formHeightRef.current &&
+        setFormHeight(formHeightRef.current.clientHeight);
+    }
+    window.addEventListener("resize", handleResize);
+  }, [isSubmitted]);
+
+  useEffect(() => {
+    setFirstHeight(window.innerHeight);
+  }, []);
+
+  console.log(windowWidth);
   function handleSubmit(e) {
     e.preventDefault();
     setErrors(validateInfo(city));
@@ -74,7 +82,10 @@ function App() {
 
   return (
     <>
-      <div className="app-container">
+      <div
+        className="app-container"
+        style={{ height: windowHeight, minHeight: windowHeight }}
+      >
         {showPopUp && (
           <PopUp
             setIsSubmitting={setIsSubmitting}
@@ -103,7 +114,7 @@ function App() {
         <div className="center">
           {((!showPopUp && !isSubmitting) ||
             Object.keys(errors).length !== 0) && (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={formHeightRef}>
               <div className="inputSend">
                 <input
                   className="search-input"
@@ -126,7 +137,10 @@ function App() {
           )}
           {((isSubmitted && !isSubmitting) ||
             (Object.keys(errors).length !== 0 && isSubmitted)) && (
-            <div className="weather-container">
+            <div
+              className="weather-container"
+              style={{ height: firstHeight - formHeight }}
+            >
               <div className="wrapper">
                 {currentWeather && (
                   <CurrentWeatherComponent

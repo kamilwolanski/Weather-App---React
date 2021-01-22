@@ -1,5 +1,6 @@
 @media(max-width: 560px) {
     .x {
+        display: none;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -12,8 +13,10 @@
     }
 
     .weather-container {
+        position: relative;
         min-width: initial;
         max-width: initial;
+        margin-bottom: initial;
         background: none;
     }
     .center {
@@ -25,11 +28,13 @@
         align-items: center;
     }
     .daily-weather-container {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         padding: 10px;
+    background-color: rgba(255, 255, 255, 0.837);
+
     }
 
     form {
