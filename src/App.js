@@ -18,7 +18,6 @@ import dayWithoutClouds from "./images/dayWithoutClouds.svg";
 
 function App() {
   // const windowHeight = window.innerHeight;
-  // document.body.style.height = `${windowHeight}px`;
   
 
   useEffect(() => {
@@ -49,6 +48,7 @@ function App() {
   const [showPopUp, setShowPopUp] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+  document.body.style.height = `${windowHeight}px`;
 
   console.log(windowWidth)
   function handleSubmit(e) {
