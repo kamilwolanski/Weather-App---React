@@ -10,14 +10,16 @@
 
 body {
     position: relative;
+    width: 100%;
+    height: 100vh;
 }
 
-.app-container {
+/* .app-container {
     position: relative;
     width: 100%;
     height: 100vh;
 
-}
+} */
 /* .current-weather-container {
     position: relative;
 } */
