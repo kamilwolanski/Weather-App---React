@@ -82,9 +82,10 @@ function App() {
 
   return (
     <>
+    
       <div
         className="app-container"
-        // style={{ height: windowHeight, minHeight: windowHeight }}
+        style={isSubmitted ? {position:'relative'} : {position:'static'}}
       >
         {showPopUp && (
           <PopUp
