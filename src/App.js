@@ -49,6 +49,7 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   document.body.style.height = `${windowHeight}px`;
+  document.body.style.minHeight = `${windowHeight}px`;
 
   console.log(windowWidth)
   function handleSubmit(e) {
