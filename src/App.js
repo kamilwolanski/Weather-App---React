@@ -84,7 +84,7 @@ function App() {
     <>
       <div
         className="app-container"
-        style={{ height: windowHeight, minHeight: windowHeight }}
+        // style={{ height: windowHeight, minHeight: windowHeight }}
       >
         {showPopUp && (
           <PopUp
