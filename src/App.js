@@ -110,6 +110,7 @@ function App() {
                   onChange={handleChange}
                   value={city}
                   maxLength="58"
+                  inputmode="search"
                 />
                 {errors.city ? (
                   <p>{errors.city}</p>
