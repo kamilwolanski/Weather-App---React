@@ -17,10 +17,15 @@ import LoadingComponent from "./components/LoadingComponent";
 import dayWithoutClouds from "./images/dayWithoutClouds.svg";
 
 function App() {
+  const windowHeight = window.innerHeight;
+  document.body.style.height = `${windowHeight}px`;
+  
+
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
     }
+    console.log(windowHeight)
 
     window.addEventListener("resize", handleResize);
   });
