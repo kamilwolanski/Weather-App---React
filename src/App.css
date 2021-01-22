@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+body {
+    position: relative;
+}
+
 .app-container {
     position: relative;
     width: 100%;
