@@ -15,7 +15,7 @@ body {
 }
 
 .app-container {
-    position: relative;
+    /* position: relative; */
     /* left: 0;
     bottom: 0; */
     width: 100%;
@@ -72,6 +72,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 
 .weather-container {
     min-width: 730px;

@@ -85,7 +85,7 @@ function App() {
     
       <div
         className="app-container"
-        style={isSubmitted ? {position:'relative'} : {position:'static'}}
+        style={(isSubmitted && !isSubmitting) ? {position:'relative'} : {position:'static'}}
       >
         {showPopUp && (
           <PopUp
