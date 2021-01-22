@@ -73,7 +73,7 @@ function App() {
 
   return (
     <>
-      <div className="app-container" style={{height:windowHeight}}>
+      <div className="app-container">
         {showPopUp && (
           <PopUp
             setIsSubmitting={setIsSubmitting}
