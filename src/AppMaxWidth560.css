@@ -1,0 +1,111 @@
+@media(max-width: 560px) {
+    .x {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20vh;
+        background-color: rgba(231, 223, 206, 1.6);
+        /* background-color: rgba(169, 169, 169, 0.685); */
+    background-color: rgba(255, 255, 255, 0.837);
+
+    }
+
+    .weather-container {
+        min-width: initial;
+        max-width: initial;
+        background: none;
+    }
+    .center {
+        display: block;
+    }
+
+    .basic-info {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .daily-weather-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        padding-top: 80px;
+        margin-bottom: 0;
+
+    }
+    
+    .switch-btn {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .overlay  {
+        display: none;
+    }
+
+    .localization-info {
+        font-size: 40px;
+        padding: initial;
+        color: white;
+    }
+
+    .small {
+        font-size: 34px;
+    }
+
+    .search-input {
+        width: initial;
+    }
+
+    .submit-input {
+        margin: 0;
+    }
+
+    .temp {
+        font-size: 50px;
+        color: white;
+    }
+
+    .windAndHumidity {
+        position: fixed;
+        display: flex;
+        width: 80%;
+        top: 0;
+        left: 0;
+        margin-top: 10px;
+    }
+
+    .wind, .humidity {
+        margin: 0 15px;
+    }
+
+    .humidity > img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .wind > img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .wind > span, .humidity > span {
+        font-size: 17px;
+        color: white;
+        margin-left: 5px;
+    }
+
+    .timeAndDescription {
+        font-size: 20px;
+        color: white;
+        text-align: center;
+    }
+}

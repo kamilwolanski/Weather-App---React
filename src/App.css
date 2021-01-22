@@ -1,38 +1,293 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+}
+/* .current-weather-container {
+    position: relative;
+} */
+
+.basic-info {
+    display: flex;
+    justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.wrapper {
+    padding: 25px;
+}
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.hero-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.hero-img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.App-link {
-  color: #61dafb;
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: -1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sweet-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.weather-container {
+    min-width: 730px;
+    max-width: 730px;
+    background-color: rgba(255, 255, 255, 0.537);
+    border-radius: 10px;
+    margin-bottom: 80px;
+}
+
+.cloudAndTemp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+
+}
+
+.temp {
+    margin: 0 27px;
+    font-size: 40px;
+    font-family: 'Yusei Magic', sans-serif;
+
+}
+
+.icon {
+    width: 110px;
+    height: 110px;
+}
+
+.localization-info {
+    padding-left: 50px;
+    font-size: 23px;
+    font-family: 'Indie Flower', cursive;
+}
+
+.localization-info, .cloudAndTemp {
+    margin: 15px;
+}
+
+.details-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.windAndHumidity, .timeAndDescription {
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.timeAndDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.humidity, .wind {
+    display: flex;
+    align-items: center;
+}
+
+.humidity > img {
+    width: 50px;
+    height: 50px;
+}
+
+.wind > img {
+    width: 50px;
+    height: 50px;
+}
+
+.description {
+    display: block;
+    align-self: center;
+    text-transform: capitalize;
+}
+
+.daily-weather-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.single-day {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Yusei Magic', sans-serif;
+
+}
+
+/* .single-day-temp {
+    font-family: 'Yusei Magic', sans-serif;
+} */
+.single-day-weather-icon {
+    width: 60px;
+}
+
+.single-day-weather-icon > img {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    margin-bottom: 50px;
+
+}
+
+form > p {
+    margin: 10px 0;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: rgb(206, 14, 14);
+}
+
+input {
+    padding: 10px;
+    background-color: rgba(255,255,255, 0.9);
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+}
+
+.search-input {
+    width: 300px;
+}
+
+.submit-input {
+    align-self: flex-start;
+    width: 70px;
+    margin: 0 30px;
+}
+
+.switch-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+svg {
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    color: white;
+}
+
+.popup-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    max-width: 500px;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(236, 235, 235);
+    border-radius: 10px;
+
+}
+
+.popup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    padding: 40px;
+}
+
+.permission {
+    text-transform: uppercase;
+    font-family: 'Yusei Magic', sans-serif;
+    text-align: center;
+    line-height: 25px;
+    letter-spacing: .8px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.buttons > button {
+    font-family: 'Yusei Magic', sans-serif;
+
+}
+
+.close-menu-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* width: 20px;
+    height: 20px; */
+    font-size: 35px;
+    color: red;
+    border: none;
+    cursor: pointer;
+}
+
+.close-menu-btn > svg {
+    color:#3f51b5;
+}
+
+.wind > span, .humidity > span {
+    margin-left: 10px;
+}
+
+
+/* .popup-container > button {
+    width: 120px;
+    height: 20%;
+} */
+/* .x {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background-color: white;
+} */

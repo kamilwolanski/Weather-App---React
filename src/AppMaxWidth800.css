@@ -1,0 +1,41 @@
+@media(max-width: 800px) {
+    .weather-container {
+        min-width: 500px;
+        max-width: 500px;
+    }
+
+    .icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .temp {
+        margin: 0 10px;
+        font-size: 30px;
+    }
+    .cloudAndTemp {
+        padding-right: 0px;
+    }
+
+    .localization-info {
+        padding-left: 25px;
+        font-size: 20px;
+    }
+
+    .cloudAndTemp, .localization-info {
+        margin: 5px;
+    }
+
+    .windAndHumidity, .timeAndDescription {
+        font-size: 15px;
+    }
+    .wind > img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .humidity > img {
+        width: 40px;
+        height: 40px;
+    }
+}
