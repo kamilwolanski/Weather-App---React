@@ -110,17 +110,17 @@ function App() {
           </div>
         )}
         {((currentWeather && isSubmitted && !isSubmitting && windowWidth < 560) ||
-            (Object.keys(errors).length !== 0 && !isSubmitted && windowWidth < 560)) &&<div className="windAndHumidity">
+            (Object.keys(errors).length !== 0 && !isSubmitted && windowWidth < 560 && currentWeather)) &&<div className="windAndHumidity">
           <span className="wind">
             <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
-            <span>{currentWeather.wind} m/s</span>
+            <span>{currentWeather && currentWeather.wind} m/s</span>
           </span>
           <span className="humidity">
             <img
               src={windowWidth > 560 ? humadityDesktop : humidityIcon}
               alt=""
             />
-            <span>{currentWeather.humidity} %</span>
+            <span>{currentWeather && currentWeather.humidity} %</span>
           </span>
         </div>}
         {isSubmitting && Object.keys(errors).length === 0 && (
@@ -157,7 +157,7 @@ function App() {
             </form>
           )}
           {((isSubmitted && !isSubmitting) ||
-            (Object.keys(errors).length !== 0 && !isSubmitted)) && (
+            (Object.keys(errors).length !== 0 && !isSubmitted && currentWeather)) && (
             <div
               className="weather-container"
               style={windowWidth < 560 ? { height: firstHeight - formHeight }: {height: 'initial'}}
