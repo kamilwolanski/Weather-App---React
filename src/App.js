@@ -111,7 +111,7 @@ function App() {
             <img src={renderBackground()} alt="" />
           </div>
         )}
-        {currentWeather &&<div className="windAndHumidity">
+        {(currentWeather && isSubmitted && !isSubmitting) &&<div className="windAndHumidity">
           <span className="wind">
             <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
             <span>{currentWeather.wind} m/s</span>
