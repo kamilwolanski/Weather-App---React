@@ -52,6 +52,8 @@ const UseSearchForm = () => {
           );
         }
       } catch (error) {
+        setIsSubmitted(false);
+
         setErrors({
           city: "City not found",
         });
@@ -75,6 +77,7 @@ const UseSearchForm = () => {
     setErrors,
     setCity,
     setCurrentPosition,
+    setIsSubmitted
   };
 };
 

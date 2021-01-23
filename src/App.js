@@ -36,6 +36,7 @@ function App() {
     setIsSubmitting,
     setErrors,
     setCurrentPosition,
+    setIsSubmitted
   } = UseSearchForm();
 
   const [isCelsius, setIsCelsius] = useState(true);
@@ -61,10 +62,10 @@ function App() {
   useEffect(() => {
     setFirstHeight(window.innerHeight);
   }, []);
-  
+
   function handleSubmit(e) {
     e.preventDefault();
-    setErrors(validateInfo(city));
+    setErrors(validateInfo(city, setIsSubmitted));
     setIsSubmitting(true);
   }
 
@@ -109,7 +110,7 @@ function App() {
           </div>
         )}
         {((currentWeather && isSubmitted && !isSubmitting && windowWidth < 560) ||
-            (Object.keys(errors).length !== 0 && isSubmitted)) &&<div className="windAndHumidity">
+            (Object.keys(errors).length !== 0 && !isSubmitted && windowWidth < 560)) &&<div className="windAndHumidity">
           <span className="wind">
             <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
             <span>{currentWeather.wind} m/s</span>
@@ -156,7 +157,7 @@ function App() {
             </form>
           )}
           {((isSubmitted && !isSubmitting) ||
-            (Object.keys(errors).length !== 0 && isSubmitted)) && (
+            (Object.keys(errors).length !== 0 && !isSubmitted)) && (
             <div
               className="weather-container"
               style={windowWidth < 560 ? { height: firstHeight - formHeight }: {height: 'initial'}}
