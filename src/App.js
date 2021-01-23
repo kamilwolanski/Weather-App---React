@@ -111,7 +111,7 @@ function App() {
             <img src={renderBackground()} alt="" />
           </div>
         )}
-        {(currentWeather && isSubmitted && !isSubmitting) &&<div className="windAndHumidity">
+        {(currentWeather && isSubmitted && !isSubmitting && windowWidth < 560) &&<div className="windAndHumidity">
           <span className="wind">
             <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
             <span>{currentWeather.wind} m/s</span>
@@ -161,7 +161,7 @@ function App() {
             (Object.keys(errors).length !== 0 && isSubmitted)) && (
             <div
               className="weather-container"
-              style={{ height: firstHeight - formHeight }}
+              style={windowWidth < 560 ? { height: firstHeight - formHeight }: {height: 'initial'}}
             >
               <div className="wrapper">
                 {currentWeather && (
@@ -173,7 +173,7 @@ function App() {
                     windowWidth={windowWidth}
                   />
                 )}
-                <div className="daily-weather-container">
+                <div className="daily-weather-container" style={(windowWidth < 560 && dayCycle === "evening") ? {backgroundColor: 'rgba(0, 0, 0, 0.17)', color: 'white'} : {backgroundColor: 'rgba(255, 255, 255, 0.837)'} }>
                   {dailyWeather &&
                     dailyWeather.map((day, index) => (
                       <SingleDayComponent

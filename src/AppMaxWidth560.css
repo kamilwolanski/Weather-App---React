@@ -12,6 +12,10 @@
 
     }
 
+    .app-container {
+        height: initial;
+    }
+
     .weather-container {
         position: relative;
         min-width: initial;
@@ -70,7 +74,7 @@
     .localization-info {
         font-size: 40px;
         padding: initial;
-        color: white;
+        /* color: white; */
     }
 
     .small {
@@ -87,7 +91,7 @@
 
     .temp {
         font-size: 50px;
-        color: white;
+        /* color: white; */
     }
 
 
@@ -129,7 +133,7 @@
 
     .timeAndDescription {
         font-size: 20px;
-        color: white;
+        /* color: white; */
         text-align: center;
     }
 }
