@@ -15,6 +15,10 @@ import SwitchBtn from "./components/SwitchBtn";
 import PopUp from "./components/PopUp";
 import LoadingComponent from "./components/LoadingComponent";
 import dayWithoutClouds from "./images/dayWithoutClouds.svg";
+import humidityIcon from './images/weatherIcons/clearHuminility.svg';
+import humadityDesktop from './images/weatherIcons/humadityDesktop.svg'
+import windIcon from './images/weatherIcons/clearWind.svg';
+import windDesktop from './images/weatherIcons/windDesktop.svg';
 
 function App() {
   const formHeightRef = useRef(null);
@@ -42,6 +46,7 @@ function App() {
   const [firstHeight, setFirstHeight] = useState("");
   document.body.style.height = `${windowHeight}px`;
   document.body.style.minHeight = `${windowHeight}px`;
+  document.body.style.maxHeight = `${windowHeight}px`;
 
   useEffect(() => {
     function handleResize() {
@@ -82,10 +87,13 @@ function App() {
 
   return (
     <>
-    
       <div
         className="app-container"
-        style={(isSubmitted && !isSubmitting) ? {position:'relative'} : {position:'static'}}
+        style={
+          isSubmitted && !isSubmitting
+            ? { position: "relative" }
+            : { position: "static" }
+        }
       >
         {showPopUp && (
           <PopUp
@@ -103,6 +111,19 @@ function App() {
             <img src={renderBackground()} alt="" />
           </div>
         )}
+        {currentWeather &&<div className="windAndHumidity">
+          <span className="wind">
+            <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
+            <span>{currentWeather.wind} m/s</span>
+          </span>
+          <span className="humidity">
+            <img
+              src={windowWidth > 560 ? humadityDesktop : humidityIcon}
+              alt=""
+            />
+            <span>{currentWeather.humidity} %</span>
+          </span>
+        </div>}
         {isSubmitting && Object.keys(errors).length === 0 && (
           <LoadingComponent />
         )}

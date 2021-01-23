@@ -37,10 +37,10 @@ const CurrentWeatherComponent = ({ currentWeather, dayCycle, localTime, isCelsiu
         </div>
       </div>
       <div className="details-info">
-        <div className="windAndHumidity">
+        {/* <div className="windAndHumidity">
           <span className="wind"><img src={windowWidth > 560 ? windDesktop : windIcon} alt=""/><span>{wind} m/s</span></span>
           <span className="humidity"><img src={windowWidth > 560 ? humadityDesktop : humidityIcon} alt=""/><span>{humidity} %</span></span>
-        </div>
+        </div> */}
         <div className="timeAndDescription">
           <span>
             {dayOfWeek} {localHour}:{localMinutes}
