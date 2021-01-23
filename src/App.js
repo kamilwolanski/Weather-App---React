@@ -53,18 +53,15 @@ function App() {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
     }
-    {
       formHeightRef.current &&
         setFormHeight(formHeightRef.current.clientHeight);
-    }
     window.addEventListener("resize", handleResize);
   }, [isSubmitted]);
 
   useEffect(() => {
     setFirstHeight(window.innerHeight);
   }, []);
-
-  console.log(windowWidth);
+  
   function handleSubmit(e) {
     e.preventDefault();
     setErrors(validateInfo(city));
@@ -111,7 +108,8 @@ function App() {
             <img src={renderBackground()} alt="" />
           </div>
         )}
-        {(currentWeather && isSubmitted && !isSubmitting && windowWidth < 560) &&<div className="windAndHumidity">
+        {((currentWeather && isSubmitted && !isSubmitting && windowWidth < 560) ||
+            (Object.keys(errors).length !== 0 && isSubmitted)) &&<div className="windAndHumidity">
           <span className="wind">
             <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
             <span>{currentWeather.wind} m/s</span>
@@ -146,7 +144,7 @@ function App() {
                   onChange={handleChange}
                   value={city}
                   maxLength="58"
-                  inputmode="search"
+                  inputMode="search"
                 />
                 {errors.city ? (
                   <p>{errors.city}</p>
@@ -173,7 +171,7 @@ function App() {
                     windowWidth={windowWidth}
                   />
                 )}
-                <div className="daily-weather-container" style={(windowWidth < 560 && dayCycle === "evening") ? {backgroundColor: 'rgba(0, 0, 0, 0.17)', color: 'white'} : {backgroundColor: 'rgba(255, 255, 255, 0.837)'} }>
+                <div className="daily-weather-container" style={((windowWidth < 560 && dayCycle === "evening") || windowWidth > 560) ? {backgroundColor: 'rgba(0, 0, 0, 0.17)', color: 'white'} : {backgroundColor: 'rgba(255, 255, 255, 0.837)'} }>
                   {dailyWeather &&
                     dailyWeather.map((day, index) => (
                       <SingleDayComponent

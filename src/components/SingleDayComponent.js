@@ -5,7 +5,6 @@ import celsiusToFahrenheit from './celsiusToFahrenheit';
 
 const SingleDayComponent = ({dailyWeather, isCelsius}) => {
     const {temp, description, date} = dailyWeather;
-    console.log(description)
   return (
       <div className="single-day">
           <span className="single-day-date">{date.day}/{date.month}</span>

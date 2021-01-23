@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { MdCancel } from "react-icons/md";
-import { ImCancelCircle } from 'react-icons/im';
 
 const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
   function getLocalization() {
@@ -30,7 +29,6 @@ const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
           >
             yes
           </Button>
-          {/* <button onClick={getLocalization}>GET LOCALIZATION</button> */}
           <Button
             className="cancel-btn"
             onClick={() => setShowPopUp(false)}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const LoadingComponent = () => {
-  let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
+  let [loading] = useState(true);
+  let [color] = useState("#ffffff");
   return (
     <>
       <div className="sweet-loading">

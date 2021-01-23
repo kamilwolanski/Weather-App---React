@@ -1,13 +1,8 @@
-import suncalc, { sunset } from "suncalc";
+import suncalc from "suncalc";
 
 export default function HandleDayCycle({ data }, setDayCycle, lon, lat) {
   const currentTime = new Date(); // Obecna data i godzina
-  //   console.log(currentTime.getDay());
 
-  // Suma czasu obecnego do wschodu i do zachodu słońca - wartość bezwzględna
-  //   console.log("sumTimeToRiseAndSet" + sumTimeToRiseAndSet);
-
-  // const dusk = suncalc.getTimes(new Date(), lat, lon).dusk.getTime();
   const goldenHour = suncalc
     .getTimes(new Date(), lat, lon)
     .goldenHour.getTime();
@@ -49,26 +44,6 @@ export default function HandleDayCycle({ data }, setDayCycle, lon, lat) {
   const toSet = currentTime - sunSet;
   const sumTimeToRiseAndSet = Math.abs(toRise + toSet);
 
-  // console.log(sunRiseDate)
-  // console.log(suncalc.getTimes(new Date(), lat, lon).sunrise)
-
-  // if(sumTimeToRiseAndSet > differenceBetweenSetAndRise) {
-  //     setDayCycle("night");
-  //     if(new Date() > sunSetDate && new Date() < dusk) {
-  //       setDayCycle("evening")
-  //     }
-  //     if(new Date() < sunRiseDate && new Date() > dawn) {
-  //       setDayCycle("morning")
-  //     }
-  // }else {
-  //     setDayCycle("day");
-  //     if(new Date() > sunRiseDate && new Date() < goldenHourEnd) {
-  //       setDayCycle("morning")
-  //     }
-  //     if(new Date() < sunSetDate && new Date() > goldenHour) {
-  //       setDayCycle('evening')
-  //     }
-  // }
   if (sumTimeToRiseAndSet > differenceBetweenSetAndRise) {
     setDayCycle("night");
     if (
@@ -82,7 +57,6 @@ export default function HandleDayCycle({ data }, setDayCycle, lon, lat) {
       sumTimeToRiseAndDawn < differenceSunRiseAndDawn &&
       differenceSunRiseAndDawn - sumTimeToRiseAndDawn < differenceSunRiseAndDawn
     ) {
-      console.log("night morning");
       setDayCycle("morning");
     }
   } else {
@@ -92,7 +66,6 @@ export default function HandleDayCycle({ data }, setDayCycle, lon, lat) {
       differenceGoldenHourEndAndSunRise - sumTimeToRiseAndGoldenHourEnd <
         differenceGoldenHourEndAndSunRise
     ) {
-      console.log("day morning");
       setDayCycle("morning");
     }
     if (
@@ -100,7 +73,6 @@ export default function HandleDayCycle({ data }, setDayCycle, lon, lat) {
       differenceSunSetAndGoldenHour - sumTimeToSetAndGoldenHour <
         differenceSunSetAndGoldenHour
     ) {
-      console.log("day evening");
       setDayCycle("evening");
     }
   }

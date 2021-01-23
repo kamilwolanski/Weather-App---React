@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Switch from "react-switch";
 import {RiCelsiusFill, RiFahrenheitFill} from 'react-icons/ri';
 
 const SwitchBtn = ({isCelsius, setIsCelsius})=> {
 
-    // const [isCelsius, setIsCelsius] = useState(true);
-    
     return (
         <div className="switch-btn">
           <label>
@@ -19,9 +17,6 @@ const SwitchBtn = ({isCelsius, setIsCelsius})=> {
               uncheckedIcon={<RiCelsiusFill/>}
             />
           </label>
-          {/* <p>
-            The switch is celsius <span>{isCelsius ? "YES" : "NO"}</span>.
-          </p> */}
         </div>
       );
 

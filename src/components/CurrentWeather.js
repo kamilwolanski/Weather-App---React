@@ -18,8 +18,6 @@ const CurrentWeatherComponent = ({ currentWeather, dayCycle, localTime, isCelsiu
   } = currentWeather;
   const { dayOfWeek, localHour, localMinutes } = localTime;
 
-  console.log(description)
-
   return (
     <>
       <div className="basic-info">
@@ -27,11 +25,11 @@ const CurrentWeatherComponent = ({ currentWeather, dayCycle, localTime, isCelsiu
           <div className="icon">
             <img src={IconService.handleIcon(description, dayCycle)} alt="" />
           </div>
-          <div className="temp" style={(windowWidth < 560 && dayCycle === 'morning') ? {color: 'black'} : {color: 'white'}}>
+          <div className="temp" style={((windowWidth < 560 && dayCycle === 'morning') || windowWidth > 560) ? {color: 'black'} : {color: 'white'}}>
             {isCelsius ? <span>{`${temp}`} &#x2103;</span> : <span>{`${celsiusToFahrenheit(temp)}`} &deg;F</span>}
           </div>
         </div>
-        <div className={`localization-info ${name.length > 17 && 'small'}`} style={(windowWidth < 560 && dayCycle === 'morning') ? {color: 'black'} : {color: 'white'}}>
+        <div className={`localization-info ${name.length > 17 && 'small'}`} style={((windowWidth < 560 && dayCycle === 'morning') || windowWidth > 560) ? {color: 'black'} : {color: 'white'}}>
           <span className="city-name">{name}, </span>
           <span className="country-name">{country}</span>
         </div>
@@ -41,7 +39,7 @@ const CurrentWeatherComponent = ({ currentWeather, dayCycle, localTime, isCelsiu
           <span className="wind"><img src={windowWidth > 560 ? windDesktop : windIcon} alt=""/><span>{wind} m/s</span></span>
           <span className="humidity"><img src={windowWidth > 560 ? humadityDesktop : humidityIcon} alt=""/><span>{humidity} %</span></span>
         </div>}
-        <div className="timeAndDescription" style={(windowWidth < 560 && dayCycle === 'morning') ? {color: 'black'} : {color: 'white'}}>
+        <div className="timeAndDescription" style={((windowWidth < 560 && dayCycle === 'morning') || windowWidth > 560) ? {color: 'black'} : {color: 'white'}}>
           <span>
             {dayOfWeek} {localHour}:{localMinutes}
           </span>
