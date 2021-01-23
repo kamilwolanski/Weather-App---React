@@ -7,8 +7,6 @@ export default function HandleDayCycle({ data }, setDayCycle, lon, lat) {
     .getTimes(new Date(), lat, lon)
     .goldenHour.getTime();
 
-  console.log(suncalc.getTimes(new Date(), lat, lon));
-
   const goldenHourEnd = suncalc
     .getTimes(new Date(), lat, lon)
     .goldenHourEnd.getTime();
