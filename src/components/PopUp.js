@@ -1,12 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Button from "@material-ui/core/Button";
 import { MdCancel } from "react-icons/md";
 
 const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
   function getLocalization() {
-    navigator.geolocation.getCurrentPosition((x) =>
-      setCurrentPosition({ lat: x.coords.latitude, lon: x.coords.longitude })
-    );
+
+    function success(position) {
+        setCurrentPosition({ lat: position.coords.latitude, lon: position.coords.longitude });
+    }
+
+    function error() {
+        setIsSubmitting(false)
+    }
+    navigator.geolocation.getCurrentPosition(success, error);
     setIsSubmitting(true);
     setShowPopUp(false);
   }
