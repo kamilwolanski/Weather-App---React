@@ -38,4 +38,12 @@
         width: 40px;
         height: 40px;
     }
+
+    .localization-notification {
+        width: 40%;
+    }
+    
+    .active {
+        top: 100px;
+    }
 }

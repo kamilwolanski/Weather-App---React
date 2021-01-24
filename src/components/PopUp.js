@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import Button from "@material-ui/core/Button";
 import { MdCancel } from "react-icons/md";
 
-const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
+const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp, setIsAccessToLocalization }) => {
   function getLocalization() {
 
     function success(position) {
@@ -11,6 +11,7 @@ const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
 
     function error() {
         setIsSubmitting(false)
+        setIsAccessToLocalization(false);
     }
     navigator.geolocation.getCurrentPosition(success, error);
     setIsSubmitting(true);
@@ -18,6 +19,7 @@ const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
   }
 
   return (
+      <>
     <div className="popup-container">
       <button className="close-menu-btn" onClick={() => setShowPopUp(false)}>
         <MdCancel />
@@ -46,6 +48,7 @@ const PopUp = ({ setIsSubmitting, setCurrentPosition, setShowPopUp }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

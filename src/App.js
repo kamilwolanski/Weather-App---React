@@ -15,10 +15,11 @@ import SwitchBtn from "./components/SwitchBtn";
 import PopUp from "./components/PopUp";
 import LoadingComponent from "./components/LoadingComponent";
 import dayWithoutClouds from "./images/dayWithoutClouds.svg";
-import humidityIcon from './images/weatherIcons/clearHuminility.svg';
-import humadityDesktop from './images/weatherIcons/humadityDesktop.svg'
-import windIcon from './images/weatherIcons/clearWind.svg';
-import windDesktop from './images/weatherIcons/windDesktop.svg';
+import humidityIcon from "./images/weatherIcons/clearHuminility.svg";
+import humadityDesktop from "./images/weatherIcons/humadityDesktop.svg";
+import windIcon from "./images/weatherIcons/clearWind.svg";
+import windDesktop from "./images/weatherIcons/windDesktop.svg";
+import AccessToLocalizationNotification from "./components/AccessLocalizationNotification";
 
 function App() {
   const formHeightRef = useRef(null);
@@ -36,7 +37,7 @@ function App() {
     setIsSubmitting,
     setErrors,
     setCurrentPosition,
-    setIsSubmitted
+    setIsSubmitted,
   } = UseSearchForm();
 
   const [isCelsius, setIsCelsius] = useState(true);
@@ -45,6 +46,8 @@ function App() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [formHeight, setFormHeight] = useState("");
   const [firstHeight, setFirstHeight] = useState("");
+  const [isAccessToLocalization, setIsAccessToLocalization] = useState(null);
+
   document.body.style.height = `${windowHeight}px`;
   document.body.style.minHeight = `${windowHeight}px`;
   document.body.style.maxHeight = `${windowHeight}px`;
@@ -54,14 +57,20 @@ function App() {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
     }
-      formHeightRef.current &&
-        setFormHeight(formHeightRef.current.clientHeight);
+    formHeightRef.current && setFormHeight(formHeightRef.current.clientHeight);
     window.addEventListener("resize", handleResize);
   }, [isSubmitted]);
 
   useEffect(() => {
     setFirstHeight(window.innerHeight);
   }, []);
+
+  useEffect(()=> {
+    setTimeout(()=> {
+      setIsAccessToLocalization(true)
+
+    }, 3000)
+  }, [isAccessToLocalization])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -93,11 +102,16 @@ function App() {
             : { position: "static" }
         }
       >
+        <AccessToLocalizationNotification
+          isAccessToLocalization={isAccessToLocalization}
+        />
+
         {showPopUp && (
           <PopUp
             setIsSubmitting={setIsSubmitting}
             setCurrentPosition={setCurrentPosition}
             setShowPopUp={setShowPopUp}
+            setIsAccessToLocalization={setIsAccessToLocalization}
           />
         )}
         {isSubmitted && !isSubmitting ? (
@@ -109,20 +123,28 @@ function App() {
             <img src={renderBackground()} alt="" />
           </div>
         )}
-        {((currentWeather && isSubmitted && !isSubmitting && windowWidth < 560) ||
-            (Object.keys(errors).length !== 0 && !isSubmitted && windowWidth < 560 && currentWeather)) &&<div className="windAndHumidity">
-          <span className="wind">
-            <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
-            <span>{currentWeather && currentWeather.wind} m/s</span>
-          </span>
-          <span className="humidity">
-            <img
-              src={windowWidth > 560 ? humadityDesktop : humidityIcon}
-              alt=""
-            />
-            <span>{currentWeather && currentWeather.humidity} %</span>
-          </span>
-        </div>}
+        {((currentWeather &&
+          isSubmitted &&
+          !isSubmitting &&
+          windowWidth < 560) ||
+          (Object.keys(errors).length !== 0 &&
+            !isSubmitted &&
+            windowWidth < 560 &&
+            currentWeather)) && (
+          <div className="windAndHumidity">
+            <span className="wind">
+              <img src={windowWidth > 560 ? windDesktop : windIcon} alt="" />
+              <span>{currentWeather && currentWeather.wind} m/s</span>
+            </span>
+            <span className="humidity">
+              <img
+                src={windowWidth > 560 ? humadityDesktop : humidityIcon}
+                alt=""
+              />
+              <span>{currentWeather && currentWeather.humidity} %</span>
+            </span>
+          </div>
+        )}
         {isSubmitting && Object.keys(errors).length === 0 && (
           <LoadingComponent />
         )}
@@ -157,10 +179,16 @@ function App() {
             </form>
           )}
           {((isSubmitted && !isSubmitting) ||
-            (Object.keys(errors).length !== 0 && !isSubmitted && currentWeather)) && (
+            (Object.keys(errors).length !== 0 &&
+              !isSubmitted &&
+              currentWeather)) && (
             <div
               className="weather-container"
-              style={windowWidth < 560 ? { height: firstHeight - formHeight }: {height: 'initial'}}
+              style={
+                windowWidth < 560
+                  ? { height: firstHeight - formHeight }
+                  : { height: "initial" }
+              }
             >
               <div className="wrapper">
                 {currentWeather && (
@@ -172,7 +200,18 @@ function App() {
                     windowWidth={windowWidth}
                   />
                 )}
-                <div className="daily-weather-container" style={((windowWidth < 560 && dayCycle === "evening") || windowWidth > 560) ? {backgroundColor: 'rgba(0, 0, 0, 0.17)', color: 'white'} : {backgroundColor: 'rgba(255, 255, 255, 0.837)'} }>
+                <div
+                  className="daily-weather-container"
+                  style={
+                    (windowWidth < 560 && dayCycle === "evening") ||
+                    windowWidth > 560
+                      ? {
+                          backgroundColor: "rgba(0, 0, 0, 0.17)",
+                          color: "white",
+                        }
+                      : { backgroundColor: "rgba(255, 255, 255, 0.837)" }
+                  }
+                >
                   {dailyWeather &&
                     dailyWeather.map((day, index) => (
                       <SingleDayComponent

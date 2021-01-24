@@ -295,6 +295,28 @@ svg {
     font-family: sans-serif;
 }
 
+.localization-notification {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    /* transform: translateY(-100%); */
+    margin: 0 auto;
+    padding: 10px;
+    width: 20%;
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: rgb(192, 53, 53);
+    color: white;
+    border-radius: 10px;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    transition: .5s;
+}
+
+.active {
+    top: 100px;
+}
+
 /* .popup-container > button {
     width: 120px;
     height: 20%;
